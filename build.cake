@@ -85,6 +85,8 @@ Setup(context =>
 
 /*===============================================
 ============ Local Build - Main Tasks ===========
+Task("Post-Deploy")
+.IsDependentOn("Sync-Unicorn")
 ===============================================*/
 Task("Default")
 .WithCriteria(configuration != null)
@@ -99,7 +101,7 @@ Task("Default")
 .IsDependentOn("Post-Deploy");
 
 Task("Post-Deploy")
-.IsDependentOn("Sync-Unicorn")
+/* .IsDependentOn("Sync-Unicorn") commented this line as i have performed manually https://sc910sxa.sc/unicorn.aspx */ 
 .IsDependentOn("Deploy-EXM-Campaigns")
 .IsDependentOn("Deploy-Marketing-Definitions")
 .IsDependentOn("Rebuild-Core-Index")
